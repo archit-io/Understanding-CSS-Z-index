@@ -1,0 +1,268 @@
+* {
+    box-sizing: border-box;
+}
+
+/* Top level container */
+.container {
+    height: 90vh;
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.container, .container > * {
+    border: 1px solid black;
+}
+
+.exampleContainer, .calculationContainer {
+    width: 50%;
+    height: 90%;
+}
+
+/* Example Container */
+.exampleContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+.element {
+    width: 30%;
+    height: 15%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;    
+}
+
+#element1 {
+    width: 50%;
+    height: 60%;
+    position: absolute;
+    border: 1px solid black;
+    left: 35%;
+    top: 30%;
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    z-index: auto;
+}
+
+#element2 {
+    top: 20%;
+    left: 25%;
+    background-color: yellow;
+    position: absolute;
+    z-index: auto;
+}
+
+#element3 {
+    top: 30%;
+    left: 30%;
+    background-color: aqua;
+    position: absolute;
+    z-index: auto;
+}
+
+#element4 {
+    top: 40%;
+    left: 35%;
+    background-color: red;
+    position: absolute;
+    z-index: auto;
+}
+
+#element5 {
+    top: 50%;
+    left: 40%;
+    background-color: greenyellow;
+    position: absolute;
+    z-index: auto;
+}
+
+#element6 {
+    top:60%;
+    left: 45%;
+    background-color: silver;
+    position: absolute;
+    z-index: auto;
+}
+
+/* Calculation Conatiner */
+
+.calculationContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+.calculationContainer > div {
+    width: 60%;
+    height: 12%;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(241, 240, 240);
+}
+
+.calculationContainer > div > span, .calculationContainer > div > input {
+    width: 30%;
+}
+
+.calculationContainer > div > input {
+    height: 50%;
+}
+
+.calculationContainer > h2 {
+    margin-bottom: 5px;
+}
+
+/* Reset Bar */
+.resetBar {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topic {
+    font-weight: 600;
+    font-size: 1.75rem;
+    margin-left: 10%;
+}
+
+#resetButton {
+    margin-right: 5%;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 15px;
+    background-color: greenyellow;
+}
+
+#resetButton:hover {
+    background-color: aqua;
+    cursor: pointer;
+}
+
+/*Media Queries*/
+
+@media screen and (max-width: 1100px) {
+    .element {
+        width: 40%;
+    }
+    
+    #element1 {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .element {
+        width: 45%;
+    }
+    
+    #element1 {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .element {
+        width: 45%;
+    }
+    
+    #element1 {
+        width: 60%;
+    }
+}
+
+
+@media screen and (max-width: 800px) {
+    .calculationContainer {        
+        justify-content: space-evenly;
+        align-items:center;
+    }
+    
+    .exampleContainer, .calculationContainer {
+        width: 100%;
+    }
+
+    .calculationContainer {
+        height: 25%;
+    }
+
+    .calculationContainer > div {
+        width: 20%;
+        height: 32%;
+    }
+
+    .calculationContainer > div > span {
+        width: 50%;
+    }
+
+    .calculationContainer > div > input {
+        width: 45%;
+    }
+
+    .calculationContainer > h2 {
+        margin-top: 5px;
+        font-weight: 500;
+        font-size: 1rem;
+    }
+
+    .calculationContainer span {
+        font-size: .75rem;
+    }
+
+
+    .exampleContainer {
+        height: 75%;
+    }
+
+
+    #element1 {        
+        left: 25%;
+        top: 20%;
+    }
+    
+    #element2 {
+        top: 10%;
+        left: 20%;
+    }
+    
+    #element3 {
+        top: 20%;
+        left: 25%;
+    }
+    
+    #element4 {
+        top: 30%;
+        left: 30%;
+    }
+    
+    #element5 {
+        top: 40%;
+        left: 35%;
+    }
+    
+    #element6 {
+        top:50%;
+        left: 40%;
+    }
+
+    .resetBar {
+        width: 100%;
+        height: 15%;
+    }
+
+    .topic {
+        font-weight: 600;
+        font-size: 1.5rem;
+        margin-left: 4%;
+    }
+}
