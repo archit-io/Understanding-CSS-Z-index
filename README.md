@@ -3,7 +3,7 @@ Add a personal collection of books to your online library. You can review the bo
 
 **Link to project:** understanding-z-index.netlify.app
 
-![Model](https://i.ibb.co/FK2998x/understanding-x-index.png)
+![Model](https://i.ibb.co/60k3rPX/understanding-x-index.png)
 
 ## How It's Made:
 
