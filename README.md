@@ -9,7 +9,7 @@ Add a personal collection of books to your online library. You can review the bo
 
 **Tech used:** HTML, CSS, JavaScript
 
-This web application is built using vanilla JavaScript. It is a useful tool to understand the concept pf z-index in CSS. It makes learning this simple (yet sometimes tricky) concept fun.
+This web application is built using vanilla JavaScript. It is a useful tool to understand the concept of z-index in CSS. It makes learning this simple concept fun.
 
 ## Lessons Learned:
 
