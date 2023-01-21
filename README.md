@@ -1,7 +1,7 @@
 # Dante's Library
 Add a personal collection of books to your online library. You can review the books and view reviews of your family and friends. You'll also be able to add books to your personal reading list.
 
-**Link to project:** understanding-z-index.netlify.app
+**Link to project:** https://understanding-z-index.netlify.app/
 
 ![Model](https://i.ibb.co/s9W0xf8/understanding-x-index.png)
 
