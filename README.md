@@ -1,5 +1,5 @@
-# Dante's Library
-Add a personal collection of books to your online library. You can review the books and view reviews of your family and friends. You'll also be able to add books to your personal reading list.
+# Understanding CSS z-index
+A web application created to understand the concept of Z-Index in CSS in an interactive and GUI based manner.
 
 **Link to project:** https://understanding-z-index.netlify.app/
 
@@ -14,5 +14,3 @@ This web application is built using vanilla JavaScript. It is a useful tool to u
 ## Lessons Learned:
 
 I created this project a few years ago to revise the basics of JavaScript.
-
-
