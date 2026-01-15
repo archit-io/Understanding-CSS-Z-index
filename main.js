@@ -1,132 +1,144 @@
-document.getElementById('elementInput1').oninput = showValue1
-document.getElementById('elementInput1').onblur = setIndex1
+/**
+ * Z-Index Controller
+ * Manages z-index input controls for multiple elements
+ */
 
-document.getElementById('elementInput2').oninput = showValue2
-document.getElementById('elementInput2').onblur = setIndex2
+// Constants
+const VALID_Z_INDEX_KEYWORDS = Object.freeze([
+  'auto',
+  'inherit',
+  'initial',
+  'revert',
+  'revert-layer',
+  'unset'
+]);
 
-document.getElementById('elementInput3').oninput = showValue3
-document.getElementById('elementInput3').onblur = setIndex3
+const ELEMENT_COUNT = 6;
+const ERROR_MESSAGE = 'Enter a valid z-index value';
+const DEFAULT_Z_INDEX = 'auto';
 
-document.getElementById('elementInput4').oninput = showValue4
-document.getElementById('elementInput4').onblur = setIndex4
+// Element cache for performance
+const elements = {
+  inputs: [],
+  displays: [],
+  targets: [],
+  resetButton: null
+};
 
-document.getElementById('elementInput5').oninput = showValue5
-document.getElementById('elementInput5').onblur = setIndex5
-
-document.getElementById('elementInput6').oninput = showValue6
-document.getElementById('elementInput6').onblur = setIndex6
-
-
-function setIndex1(e) {     
-    const val = e.target.value
-    const arr = ['auto','inherit','initial','revert','revert-layer','unset']
-    let _ = Number.isInteger(Number(val)) || arr.includes(val) ? val : 'Enter a valid z-index value'
-    document.getElementById('element1ZIndex').innerText = `z-index: ${_}`
-    const zIdx = _ === 'Enter a valid z-index value' ? 'auto' : _
-    document.getElementById('element1').style.zIndex = zIdx        
+/**
+ * Validates if a value is a valid z-index
+ * @param {string} value - The value to validate
+ * @returns {boolean}
+ */
+function isValidZIndex(value) {
+  return Number.isInteger(Number(value)) || VALID_Z_INDEX_KEYWORDS.includes(value);
 }
 
-function showValue1(e) {
-    document.getElementById('element1ZIndex').innerText = `z-index: ${e.target.value}`      
+/**
+ * Updates the z-index display text
+ * @param {HTMLElement} displayElement - The element to update
+ * @param {string} value - The z-index value to display
+ */
+function updateZIndexDisplay(displayElement, value) {
+  displayElement.textContent = `z-index: ${value}`;
 }
 
-
-function setIndex2(e) {     
-    const val = e.target.value
-    const arr = ['auto','inherit','initial','revert','revert-layer','unset']
-    let _ = Number.isInteger(Number(val)) || arr.includes(val) ? val : 'Enter a valid z-index value'
-    document.getElementById('element2ZIndex').innerText = `z-index: ${_}`
-    const zIdx = _ === 'Enter a valid z-index value' ? 'auto' : _
-    document.getElementById('element2').style.zIndex = zIdx        
+/**
+ * Applies z-index to an element
+ * @param {HTMLElement} targetElement - The element to apply z-index to
+ * @param {string} value - The z-index value
+ */
+function applyZIndex(targetElement, value) {
+  targetElement.style.zIndex = value;
 }
 
-function showValue2(e) {
-    document.getElementById('element2ZIndex').innerText = `z-index: ${e.target.value}`      
+/**
+ * Handles input event - validates and applies z-index in real-time
+ * @param {number} elementIndex - The index of the element (1-based)
+ * @returns {Function} Event handler function
+ */
+function createInputHandler(elementIndex) {
+  return (event) => {
+    const value = event.target.value;
+    
+    // If empty, show auto and apply auto
+    if (value === '') {
+      updateZIndexDisplay(elements.displays[elementIndex], DEFAULT_Z_INDEX);
+      applyZIndex(elements.targets[elementIndex], DEFAULT_Z_INDEX);
+      return;
+    }
+    
+    // Show current input value
+    updateZIndexDisplay(elements.displays[elementIndex], value);
+    
+    // Apply z-index if valid, otherwise apply auto
+    const isValid = isValidZIndex(value);
+    const zIndexValue = isValid ? value : DEFAULT_Z_INDEX;
+    applyZIndex(elements.targets[elementIndex], zIndexValue);
+  };
 }
 
-
-function setIndex3(e) {     
-    const val = e.target.value
-    const arr = ['auto','inherit','initial','revert','revert-layer','unset']
-    let _ = Number.isInteger(Number(val)) || arr.includes(val) ? val : 'Enter a valid z-index value'
-    document.getElementById('element3ZIndex').innerText = `z-index: ${_}`
-    const zIdx = _ === 'Enter a valid z-index value' ? 'auto' : _
-    document.getElementById('element3').style.zIndex = zIdx        
+/**
+ * Handles blur event - shows error message if invalid
+ * @param {number} elementIndex - The index of the element (1-based)
+ * @returns {Function} Event handler function
+ */
+function createBlurHandler(elementIndex) {
+  return (event) => {
+    const value = event.target.value;
+    
+    // Only update display if value is invalid to show error
+    if (value !== '' && !isValidZIndex(value)) {
+      updateZIndexDisplay(elements.displays[elementIndex], ERROR_MESSAGE);
+    }
+  };
 }
 
-function showValue3(e) {
-    document.getElementById('element3ZIndex').innerText = `z-index: ${e.target.value}`      
-}
-
-
-function setIndex4(e) {     
-    const val = e.target.value
-    const arr = ['auto','inherit','initial','revert','revert-layer','unset']
-    let _ = Number.isInteger(Number(val)) || arr.includes(val) ? val : 'Enter a valid z-index value'
-    document.getElementById('element4ZIndex').innerText = `z-index: ${_}`
-    const zIdx = _ === 'Enter a valid z-index value' ? 'auto' : _
-    document.getElementById('element4').style.zIndex = zIdx        
-}
-
-function showValue4(e) {
-    document.getElementById('element4ZIndex').innerText = `z-index: ${e.target.value}`      
-}
-
-
-
-function setIndex5(e) {     
-    const val = e.target.value
-    const arr = ['auto','inherit','initial','revert','revert-layer','unset']
-    let _ = Number.isInteger(Number(val)) || arr.includes(val) ? val : 'Enter a valid z-index value'
-    document.getElementById('element5ZIndex').innerText = `z-index: ${_}`
-    const zIdx = _ === 'Enter a valid z-index value' ? 'auto' : _
-    document.getElementById('element5').style.zIndex = zIdx        
-}
-
-function showValue5(e) {
-    document.getElementById('element5ZIndex').innerText = `z-index: ${e.target.value}`      
-}
-
-
-
-function setIndex6(e) {     
-    const val = e.target.value
-    const arr = ['auto','inherit','initial','revert','revert-layer','unset']
-    let _ = Number.isInteger(Number(val)) || arr.includes(val) ? val : 'Enter a valid z-index value'
-    document.getElementById('element6ZIndex').innerText = `z-index: ${_}`
-    const zIdx = _ === 'Enter a valid z-index value' ? 'auto' : _
-    document.getElementById('element6').style.zIndex = zIdx        
-}
-
-function showValue6(e) {
-    document.getElementById('element6ZIndex').innerText = `z-index: ${e.target.value}`      
-}
-
-
-document.getElementById('resetButton').onclick = resetAll 
-
+/**
+ * Resets all elements to default z-index
+ */
 function resetAll() {
-    document.getElementById('element1ZIndex').innerText = `z-index: auto`
-    document.getElementById('element1').style.zIndex = 'auto' 
-    document.getElementById('elementInput1').value=''
+  for (let i = 1; i <= ELEMENT_COUNT; i++) {
+    updateZIndexDisplay(elements.displays[i], DEFAULT_Z_INDEX);
+    applyZIndex(elements.targets[i], DEFAULT_Z_INDEX);
+    elements.inputs[i].value = '';
+  }
+}
 
-    document.getElementById('element2ZIndex').innerText = `z-index: auto`
-    document.getElementById('element2').style.zIndex = 'auto' 
-    document.getElementById('elementInput2').value=''
+/**
+ * Caches DOM elements for better performance
+ */
+function cacheElements() {
+  for (let i = 1; i <= ELEMENT_COUNT; i++) {
+    elements.inputs[i] = document.getElementById(`elementInput${i}`);
+    elements.displays[i] = document.getElementById(`element${i}ZIndex`);
+    elements.targets[i] = document.getElementById(`element${i}`);
+  }
+  elements.resetButton = document.getElementById('resetButton');
+}
 
-    document.getElementById('element3ZIndex').innerText = `z-index: auto`
-    document.getElementById('element3').style.zIndex = 'auto' 
-    document.getElementById('elementInput3').value=''
+/**
+ * Attaches event listeners to all input elements
+ */
+function attachEventListeners() {
+  for (let i = 1; i <= ELEMENT_COUNT; i++) {
+    elements.inputs[i].addEventListener('input', createInputHandler(i));
+    elements.inputs[i].addEventListener('blur', createBlurHandler(i));
+  }
+  elements.resetButton.addEventListener('click', resetAll);
+}
 
-    document.getElementById('element4ZIndex').innerText = `z-index: auto`
-    document.getElementById('element4').style.zIndex = 'auto' 
-    document.getElementById('elementInput4').value=''
+/**
+ * Initialize the application
+ */
+function initialize() {
+  cacheElements();
+  attachEventListeners();
+}
 
-    document.getElementById('element5ZIndex').innerText = `z-index: auto`
-    document.getElementById('element5').style.zIndex = 'auto' 
-    document.getElementById('elementInput5').value=''
-
-    document.getElementById('element6ZIndex').innerText = `z-index: auto`
-    document.getElementById('element6').style.zIndex = 'auto' 
-    document.getElementById('elementInput6').value=''
+// Start the application when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initialize);
+} else {
+  initialize();
 }

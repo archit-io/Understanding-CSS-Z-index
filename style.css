@@ -1,8 +1,15 @@
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+
 * {
     box-sizing: border-box;
 }
 
-/* Top level container */
+/* ==========================================================================
+   Layout - Container
+   ========================================================================== */
+
 .container {
     height: 90vh;
     display: flex;
@@ -10,16 +17,21 @@
     flex-wrap: wrap;
 }
 
-.container, .container > * {
-    border: 1px solid black;
+.container,
+.container > * {
+    border: 1px solid #000;
 }
 
-.exampleContainer, .calculationContainer {
+.exampleContainer,
+.calculationContainer {
     width: 50%;
     height: 90%;
 }
 
-/* Example Container */
+/* ==========================================================================
+   Example Container - Visual Demo Area
+   ========================================================================== */
+
 .exampleContainer {
     display: flex;
     justify-content: center;
@@ -27,70 +39,63 @@
     position: relative;
 }
 
-
 .element {
     width: 30%;
     height: 15%;
     display: flex;
     justify-content: space-around;
-    align-items: center;    
+    align-items: center;
+    position: absolute;
+    z-index: auto;
 }
 
+/* Element 1 - Main container */
 #element1 {
     width: 50%;
     height: 60%;
-    position: absolute;
-    border: 1px solid black;
-    left: 35%;
     top: 30%;
+    left: 35%;
+    border: 1px solid #000;
     background-color: antiquewhite;
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
-    z-index: auto;
 }
 
+/* Individual Elements */
 #element2 {
     top: 20%;
     left: 25%;
     background-color: yellow;
-    position: absolute;
-    z-index: auto;
 }
 
 #element3 {
     top: 30%;
     left: 30%;
     background-color: aqua;
-    position: absolute;
-    z-index: auto;
 }
 
 #element4 {
     top: 40%;
     left: 35%;
     background-color: red;
-    position: absolute;
-    z-index: auto;
 }
 
 #element5 {
     top: 50%;
     left: 40%;
     background-color: greenyellow;
-    position: absolute;
-    z-index: auto;
 }
 
 #element6 {
-    top:60%;
+    top: 60%;
     left: 45%;
     background-color: silver;
-    position: absolute;
-    z-index: auto;
 }
 
-/* Calculation Conatiner */
+/* ==========================================================================
+   Calculation Container - Input Controls
+   ========================================================================== */
 
 .calculationContainer {
     display: flex;
@@ -98,18 +103,24 @@
     align-items: flex-start;
     flex-wrap: wrap;
 }
+
+.calculationContainer > h2 {
+    margin-bottom: 5px;
+}
+
 .calculationContainer > div {
     width: 60%;
     height: 12%;
-    border: 1px solid black;
+    border: 1px solid #000;
     border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(241, 240, 240);
+    background-color: #f1f0f0;
 }
 
-.calculationContainer > div > span, .calculationContainer > div > input {
+.calculationContainer > div > span,
+.calculationContainer > div > input {
     width: 30%;
 }
 
@@ -117,11 +128,10 @@
     height: 50%;
 }
 
-.calculationContainer > h2 {
-    margin-bottom: 5px;
-}
+/* ==========================================================================
+   Reset Bar - Header
+   ========================================================================== */
 
-/* Reset Bar */
 .resetBar {
     width: 100%;
     height: 10%;
@@ -131,26 +141,31 @@
 }
 
 .topic {
+    margin-left: 10%;
     font-weight: 600;
     font-size: 1.75rem;
-    margin-left: 10%;
 }
 
 #resetButton {
     margin-right: 5%;
-    border: 1px solid black;
-    border-radius: 5px;
     padding: 5px 15px;
+    border: 1px solid #000;
+    border-radius: 5px;
     background-color: greenyellow;
-}
-
-#resetButton:hover {
-    background-color: aqua;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
-/*Media Queries*/
+#resetButton:hover,
+#resetButton:focus {
+    background-color: aqua;
+}
 
+/* ==========================================================================
+   Media Queries - Responsive Design
+   ========================================================================== */
+
+/* Large Tablets (max-width: 1100px) */
 @media screen and (max-width: 1100px) {
     .element {
         width: 40%;
@@ -161,39 +176,33 @@
     }
 }
 
+/* Small Tablets & Mobile (max-width: 800px) */
 @media screen and (max-width: 800px) {
-    .element {
-        width: 45%;
-    }
-    
-    #element1 {
-        width: 60%;
-    }
-}
-
-@media screen and (max-width: 800px) {
-    .element {
-        width: 45%;
-    }
-    
-    #element1 {
-        width: 60%;
-    }
-}
-
-
-@media screen and (max-width: 800px) {
-    .calculationContainer {        
-        justify-content: space-evenly;
-        align-items:center;
-    }
-    
-    .exampleContainer, .calculationContainer {
+    /* Layout adjustments */
+    .exampleContainer,
+    .calculationContainer {
         width: 100%;
     }
 
     .calculationContainer {
         height: 25%;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .exampleContainer {
+        height: 75%;
+    }
+
+    .resetBar {
+        height: 15%;
+    }
+
+    /* Calculation container inputs */
+    .calculationContainer > h2 {
+        margin-top: 5px;
+        font-weight: 500;
+        font-size: 1rem;
     }
 
     .calculationContainer > div {
@@ -203,31 +212,22 @@
 
     .calculationContainer > div > span {
         width: 50%;
+        font-size: 0.75rem;
     }
 
     .calculationContainer > div > input {
         width: 45%;
     }
 
-    .calculationContainer > h2 {
-        margin-top: 5px;
-        font-weight: 500;
-        font-size: 1rem;
+    /* Element positioning */
+    .element {
+        width: 45%;
     }
 
-    .calculationContainer span {
-        font-size: .75rem;
-    }
-
-
-    .exampleContainer {
-        height: 75%;
-    }
-
-
-    #element1 {        
-        left: 25%;
+    #element1 {
+        width: 60%;
         top: 20%;
+        left: 25%;
     }
     
     #element2 {
@@ -251,18 +251,13 @@
     }
     
     #element6 {
-        top:50%;
+        top: 50%;
         left: 40%;
     }
 
-    .resetBar {
-        width: 100%;
-        height: 15%;
-    }
-
+    /* Header */
     .topic {
-        font-weight: 600;
-        font-size: 1.5rem;
         margin-left: 4%;
+        font-size: 1.5rem;
     }
 }
